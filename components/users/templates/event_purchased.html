@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Events created by {{user.username}}</h1>
+<ul>
+{% for event in user.event_purchased[::-1] %}
+    <li>
+        #{{event.id}}<br>
+        <h1>{{event.title}}<br></h1>
+        <h3>{{event.description}}<br></h3>
+        <h3>Location: {{event.location}}<br></h3>
+        <h3>Price: {{event.price}}<br></h3>
+        <h3>From {{event.start}} to {{event.end}}<br></h3>
+        <small>by {{event.creator.username}} at {{event.created}}<br></small>
+        <a class="nav-link" href="/events/{{event.id}}">View <span class="sr-only">(current)</span></a>
+        <img src="{{event.image_url}}" alt="Event Image">
+        <hr>
+    </li>
+{% endfor %}
+</ul>
+{% endblock content %}
