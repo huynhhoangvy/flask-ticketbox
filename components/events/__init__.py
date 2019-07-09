@@ -69,27 +69,16 @@ def edit(id):
     form = EventForm()
     event = Event.query.filter_by(id=id).first()
     if form.validate_on_submit():
-        edited_event = Event(title=form.title.data,
-                        image_url=form.image_url.data,
-                        creator_id=current_user.id,
-                        start=form.start.data.strftime('%Y-%m-%d'),
-                        end=form.end.data.strftime('%Y-%m-%d'),
-                        location=form.location.data,
-                        description=form.description.data,
-                        price=form.price.data,
-                        event_url=form.event_url.data,
-                        is_private=form.is_private.data)
-
-        event.title=edited_event.title
-        event.image_url=edited_event.image_url
-        event.creator_id=edited_event.creator_id
-        event.start=edited_event.start
-        event.end=edited_event.end
-        event.location=edited_event.location
-        event.description=edited_event.description
-        event.price=edited_event.price
-        event.event_url=edited_event.event_url
-        event.is_private=edited_event.is_private
+        event.title=form.title.data,
+        event.image_url=form.image_url.data,
+        event.creator_id=current_user.id,
+        event.start=form.start.data.strftime('%Y-%m-%d'),
+        event.end=form.end.data.strftime('%Y-%m-%d'),
+        event.location=form.location.data,
+        event.description=form.description.data,
+        event.price=form.price.data,
+        event.event_url=form.event_url.data,
+        event.is_private=form.is_private.data
 
         db.session.commit()
 
